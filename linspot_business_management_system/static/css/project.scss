@@ -1,0 +1,14 @@
+// fonts
+$primary-color-1: #363062;
+$primary-color-2: #4D4C7D;
+$primary-color-3: #F99417;
+$primary-color-4: #F5F5F5;
+
+// account styles
+.accounts{
+    background: $primary-color-4;
+    .reset{
+        background: $primary-color-3 !important;
+        border-color: $primary-color-3;
+    }
+}

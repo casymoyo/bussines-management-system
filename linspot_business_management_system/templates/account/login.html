@@ -1,0 +1,33 @@
+{% extends "account/base.html" %}
+
+{% load static %}
+{% load i18n %}
+{% load account socialaccount %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+  {% translate "Sign In" %}
+{% endblock head_title %}
+{% block inner %}
+<div class="login-form d-flex justify-content-center align-items-center flex-column" style="height: 100vh;">
+  <div class="img">
+    <img src="{% static 'images/logos/logo.png'%}" alt="logo" width='200px'>
+  </div>
+  <h1 class='text-center py-2'>{% translate "Login" %}</h1>
+  <form class="login w-75 bg-light p-5 shadow" method="post" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form|crispy }}
+    {% if redirect_field_value %}
+      <input type="hidden"
+             name="{{ redirect_field_name }}"
+             value="{{ redirect_field_value }}" />
+    {% endif %}
+    <button class="primaryAction btn btn-primary w-100" type="submit">{% translate "Login" %}</button>
+    <span class='d-flex justify-content-end mt-2'>
+      <a class="button secondaryAction"
+       href="{% url 'account_reset_password' %}" style='text-decoration:none;'>{% translate "Forgot Password?" %}
+    </a>
+    </span>
+  </form>
+</div>
+{% endblock inner %}
