@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.2.3/css/bootstrap.min.css"
+          integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+
+    <title>Clients</title>
+</head>
+<style>
+    .table-body{
+        margin-top: 10px;
+    }
+    hr{
+        border-color:#664147 !important;
+    }
+</style>
+<body class="container">
+    <div class="row container mt-5">
+        <small>{{date}}</small>
+        <div class="title">
+            <h3 style="text-align: center;">Linkspot Members</h3>
+        </div>
+        <div class="col-12">
+            <h4>Permanent</h4>
+            <hr style="border:1px solid #664147 !important;">
+            <table class="table table-striped">
+                <tbody class='table-body'>
+                    {% for client in clients %}
+                        {% if client.member_status == 'permanent' %}
+                        <tr>
+                            <td>{{client.name|title}}</td>
+                            <td>{{client.phonenumber}}</td>
+                            <td>{{client.station_number.station}}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <h4 class='mt-2'>Non Permanent</h4>
+            <hr style="border:1px solid #664147 !important;">
+            <table class="table table-striped">
+                <tbody class='table-body'>
+                    {% for client in clients %}
+                        {% if client.member_status != 'permanent' %}
+                        <tr>
+                            <td>{{client.name|title}}</td>
+                            <td>{{client.phonenumber}}</td>
+                            <td>{{client.station_number.station}}</td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}{{client.name}} | account{% endblock title %}
+{% block content %}
+<div class="pos">
+    <div>
+        <div class="title d-flex justify-content-end align-items-center" style="opacity: 1 !important;">
+            <h4 class="w-100">Account for {{client.name}}
+                <span class="px-1">
+                    <i class='bx bxs-circle'></i>
+                    {{client.member_status|title}}
+                </span>
+            </h4>
+            <div class="d-flex align-items-center justify-content-end w-100">
+                <span class="py-2 shadow px-2">
+                    <a href='{% url 'transactions:clientAccount' client.id %}' class="btn btn-secondary btn-sm" type="button">
+                        Download Pdf
+                        <span class='px-1'><i class='bx bx-download' ></i></span>
+                    </a>
+                </span> 
+                <span class="py-2 shadow px-2">
+                    <form method="get" class="d-flex align-items-center">
+                        <input type="search" name="q" class="form-control shadow" placeholder="transaction">
+                    </form>
+                </span>   
+            </div> 
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class='personal-info border p-2'>
+                    <span>
+                        <i class='bx bx-buildings' ></i>
+                        {{client.address}}
+                    </span>
+                    <span class='px-2'>|</span>
+                    <span>
+                        <i class='bx bx-phone' ></i>
+                        {{client.phonenumber}}
+                    </span>
+                    <span class='px-2'>|</span>
+                    <span>
+                        Id Number: {{client.id_number}}
+                    </span>
+                    <span class='px-2'>|</span>
+                    <span>Station Number: {{client.station_number.station}}</span>
+                </div>
+                <div class="Day-Desks mt-3">
+                    <h6>Account transactions</h6>
+                    <table class='todays-vouchers list-unstyled p-2 table-primary table table-striped mt-4 table-responsive'>
+                        <thead>
+                            <th>Date</th>
+                            <th>Details</th>
+                            <th>Amount</th>
+                            <th>Owing</th>
+                        </thead>
+                        <tbody>
+                            {% for transaction in transactions %}
+                            <tr>
+                                <td>{{transaction.date_created}}</td>
+                                <td>{{transaction.product}}</td>
+                                <td>{{transaction.amount}}</td>
+                                {% if transaction.owing == 0 %}
+                                    <td>-----</td>
+                                {% else %}
+                                    <td>{{transaction.owing}}</td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+{% endblock content %}

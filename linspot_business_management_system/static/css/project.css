@@ -1,0 +1,238 @@
+body {
+  overflow: hidden !important;
+}
+body .btn-primary {
+  background: #664147 !important;
+  border-color: #664147 !important;
+}
+body .btn-secondary {
+  background: #476641 !important;
+  border-color: #476641 !important;
+}
+body .btn-warning {
+  background: #F99417 !important;
+  border-color: #F99417 !important;
+}
+body input {
+  opacity: 0.7 !important;
+}
+
+.accounts {
+  background: #F5F5F5;
+}
+.accounts .reset {
+  background: #F99417 !important;
+  border-color: #F99417;
+}
+
+.navbar .nav-link {
+  color: #333 !important;
+}
+
+.main-app .col-2 .aside {
+  height: 90vh;
+}
+.main-app .col-2 .aside li {
+  padding-top: 10px;
+}
+.main-app .col-2 .aside li a {
+  color: #333;
+  text-decoration: none;
+}
+.main-app .col-2 .aside li a i {
+  font-weight: bold !important;
+}
+.main-app .col-2 .aside li:hover {
+  background: #F5F5F5;
+  padding-bottom: 5px;
+}
+.main-app .col-10 .dashboard h4 {
+  opacity: 0.8 !important;
+}
+.main-app .col-10 .dashboard .card {
+  height: 20vh;
+  border: none;
+}
+.main-app .col-10 .dashboard .card a {
+  text-decoration: none;
+}
+
+.title {
+  margin-top: 14px;
+  color: #476641;
+}
+
+.pos .card {
+  cursor: pointer;
+}
+.pos .card:hover {
+  background: #333;
+  color: #F5F5F5;
+}
+.pos .product:hover {
+  color: #fe4066;
+}
+.pos .col-3 {
+  height: 90vh;
+}
+
+.vouchers .voucher-table {
+  overflow-y: auto;
+  height: 10vh !important;
+}
+.vouchers .voucher-table::-webkit-scrollbar {
+  width: 2px;
+}
+.vouchers .voucher-table::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+.vouchers .voucher-table::-webkit-scrollbar-thumb {
+  background: #fe4066;
+  border-radius: 5px;
+}
+.vouchers .voucher-table::-webkit-scrollbar-thumb:hover {
+  background: rgb(54, 56, 58);
+}
+
+.cafe-modal,
+.client-modal,
+.permanent-modal,
+.expenses-modal,
+.category-modal {
+  gap: 0.4rem;
+  width: 1000px;
+  padding: 1.3rem;
+  min-height: 500px;
+  position: absolute;
+  top: 20%;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  z-index: 2;
+}
+.cafe-modal p,
+.client-modal p,
+.permanent-modal p,
+.expenses-modal p,
+.category-modal p {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0.4rem 0 0.2rem;
+}
+.cafe-modal button,
+.client-modal button,
+.permanent-modal button,
+.expenses-modal button,
+.category-modal button {
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+}
+.cafe-modal .btn,
+.client-modal .btn,
+.permanent-modal .btn,
+.expenses-modal .btn,
+.category-modal .btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+}
+.cafe-modal .btn-cl,
+.client-modal .btn-cl,
+.permanent-modal .btn-cl,
+.expenses-modal .btn-cl,
+.category-modal .btn-cl {
+  transform: translate(10px, -20px);
+  padding: 0.5rem 0.7rem;
+  background: #eee;
+  color: #fe4066 !important;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+.spinner-content {
+  height: 100vh;
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+.back {
+  width: 100%;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.back:hover {
+  background: #333;
+}
+.back:hover small {
+  color: #fff;
+}
+
+.client i.hover {
+  font-size: 20px;
+}
+
+.vouchers-list .card,
+.file-table .card,
+.vouchers-logs .card {
+  border: none !important;
+}
+.vouchers-list .voucher-table,
+.file-table .voucher-table,
+.vouchers-logs .voucher-table {
+  overflow-y: auto;
+  height: 60vh !important;
+}
+.vouchers-list .voucher-table::-webkit-scrollbar,
+.file-table .voucher-table::-webkit-scrollbar,
+.vouchers-logs .voucher-table::-webkit-scrollbar {
+  width: 2px;
+}
+.vouchers-list .voucher-table::-webkit-scrollbar-track,
+.file-table .voucher-table::-webkit-scrollbar-track,
+.vouchers-logs .voucher-table::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+.vouchers-list .voucher-table::-webkit-scrollbar-thumb,
+.file-table .voucher-table::-webkit-scrollbar-thumb,
+.vouchers-logs .voucher-table::-webkit-scrollbar-thumb {
+  background: #0d6efd;
+  border-radius: 5px;
+}
+.vouchers-list .voucher-table::-webkit-scrollbar-thumb:hover,
+.file-table .voucher-table::-webkit-scrollbar-thumb:hover,
+.vouchers-logs .voucher-table::-webkit-scrollbar-thumb:hover {
+  background: rgb(54, 56, 58);
+}
+
+.breadcrumb {
+  margin-bottom: -43px;
+}
+.breadcrumb a {
+  color: #333 !important;
+}
+.breadcrumb a:hover {
+  color: #0d6efd !important;
+}/*# sourceMappingURL=project.css.map */

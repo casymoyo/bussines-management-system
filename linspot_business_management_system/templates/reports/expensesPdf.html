@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-sexpense.0">
+
+    <link rel="stylesheet"
+          href="https:/expense.clouexpense.com/ajax/libs/bootsexpense.3/css/booexpense.css"
+          integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+
+    <title>Clients</title>
+</head>
+<style>
+    .table-body{
+        margin-top: 10px;
+    }
+    hr{
+        border-color:#664147 !important;
+    }
+</style>
+<body class="container">
+    <div class="row container mt-5">
+        <small>{{date}}</small>
+        <div class="title">
+            <h3 style="text-align: center;">Linkspot</h3>
+        </div>
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <h4>{{title|title}}</h4>
+            </div>
+            <hr style="border:1px solid #664147 !important;">
+            <table class="table table-striped">
+                <tbody class='table-body'>
+                    {% for expense in expenses %}
+                        <tr>
+                            <td>{{expense.date_created}}</td>
+                            <td>{{expense.name}}</td>
+                            <td>{{expense.description}}</td>
+                            <td>{{expense.amount}}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td style="font-weight:bold;">Total</td>
+                        <td></td>
+                        <td></td>
+                        <td style="border-top: 1px solid #333; margin-top:5px; font-weight:bold; width:100px; padding-top:5px;">
+                            <span style="margin-top: 10px;">{{total}}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

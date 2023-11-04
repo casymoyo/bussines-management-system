@@ -1,0 +1,17 @@
+ordinary - ordinary desk
+with laptop - day desk with laptop
+
+{% comment %} $(".client_selection").select2({
+            placeholder: 'Select Client',
+            theme: "classic",
+        }) //select2 js {% endcomment %}
+        // Get the Select2 object for your select element.
+
+  <div class="d-flex align-items-center">
+            <span class="py-2 shadow px-2">
+                    <button class="btn  px-2">Non Permanent</button>
+            </span>
+            <span class="py-2 shadow px-2">
+                <a href="{% url 'client:clientsPdf' %}" class="btn btn btn-secondary">Download Pdf</a>
+            </span>
+        </div>

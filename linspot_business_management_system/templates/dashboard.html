@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Dashboard{% endblock title %}
+{% block content %}
+<div class="dashboard mt-3">
+    <div class="title d-flex justify-content-between align-items-center">
+        <h4>Dashboard</h4>
+        <span class="py-2 shadow px-2">Income $2000</span>
+    </div>
+    <div class="row mt-3">
+        <div class="col-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="d-flex justify-content-between"> 
+                        <span>Members</span>
+                        <span class="number">100</span>
+                    </h5>
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between">
+                            <a href="">Permanent</a>
+                            <span class="number">100</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <a href="">Non Permanent</a>
+                            <span class="number">100</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- sales -->
+        <div class="col-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="d-flex justify-content-between"> 
+                        <span>Sales</span>
+                        <span class="number">100</span>
+                    </h5>
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between">
+                            <a href="">Day Desks</a>
+                            <span class="number">100</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <a href="">Internet Cafe</a>
+                            <span class="number">100</span>
+                        </li>
+                        <li class="d-flex justify-content-between">
+                            <a href="">Rental Income</a>
+                            <span class="number">100</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- expenses -->
+        <div class="col-4">
+            <div class="card shadow">
+                <div class="card-body">
+                    <h5 class="d-flex justify-content-between"> 
+                        <span>Expenses</span>
+                        <span class="number">100</span>
+                    </h5>
+                    <ul class="list-unstyled">
+                        <li class="d-flex justify-content-between">
+                            <a href="">Total</a>
+                            <span class="number">100</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% block content %}
+<div class="client-add-form" class="d-flex justify-content-center align-items-center">
+    <div class="menu-buttons d-flex justify-content-between align-items-center">
+        <div>
+            <h5>Add Client</h5>
+        </div>
+        <div class="px-3">
+            <span>
+                <button class="btn btn-danger close">cancel</button>
+            </span>
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center mt-4 border p-5" >
+        <form method="post" id="client_form" class="w-50">
+            {% csrf_token %}
+            <div class="row mt-3 mb-3">
+                <input type="text" name="name" id="client_name" placeholder="Fullname" class="form-control">
+            </div>
+            <div class="row mb-3">
+                <input type="text" name="phonenumber" id="client_phonenumber" placeholder="Phonenumber" class="form-control">
+            </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary"  type="submit">Submit</button>
+                </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

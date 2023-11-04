@@ -1,0 +1,37 @@
+{% load static %}
+{% block content %}
+<nav class="navbar navbar-expand-md navbar-light bg-light shadow">
+    <div class="container-fluid">
+      <button class="navbar-toggler navbar-toggler-right"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'dashboard:dashboard' %}">Linspot business management system</a>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="">settings <span class="visually-hidden">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">notifications</a>
+          </li>
+          {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link"
+                 href="{% url 'users:detail' request.user.username %}">Profile</a>
+            </li>
+            <li class="nav-item">
+              {# URL provided by django-allauth/account/urls.py #}
+              <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+{% endblock content %}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-sexpense.0">
+
+    <link rel="stylesheet"
+          href="https:/expense.clouexpense.com/ajax/libs/bootsexpense.3/css/booexpense.css"
+          integrity="sha512-SbiR/eusphKoMVVXysTKG/7VseWii+Y3FdHrt0EpKgpToZeemhqHeZeLWLhJutz/2ut2Vw1uQEj2MbRF+TVBUA=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+
+    <title>Sales</title>
+</head>
+<style>
+    .table-body{
+        margin-top: 10px;
+    }
+    hr{
+        border-color:#664147 !important;
+    }
+</style>
+<body class="container">
+    <div class="row container mt-5">
+        <small>{{date}}</small>
+        <div class="title">
+            <h1 style="text-align: center;">Linkspot {{title|title}}</h1>
+        </div>
+        <div class="col-12">
+            <div class="d-flex justify-content-between">
+                <span style="float:right; width:100%; font-size:16px;">Total Sales {{total}}</span>
+            </div>
+            <hr style="border:1px solid #664147 !important;">
+            <h4>Internet Cafe Sales</h4>
+            <table class="table table-striped">
+                <tbody class='table-body'>
+                    {% for sale in sales %}
+                      {% if sale.status == 'cafe' %}
+                        <tr>
+                            <td>{{sale.date_created}}</td>
+                            <td>{{sale.client}}</td>
+                            <td>{{sale.note}}</td>
+                            <td>{{sale.amount}}</td>
+                        </tr>
+                      {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+          <hr>
+          <h4>Day desk's Sales</h4>
+            <table class="table table-striped">
+                <tbody class='table-body'>
+                    {% for sale in sales %}
+                      {% if sale.status == 'day' %}
+                        <tr>
+                            <td>{{sale.date_created}}</td>
+                            <td>{{sale.client}}</td>
+                            <td>{{sale.note}}</td>
+                            <td>{{sale.amount}}</td>
+                        </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+          <hr>
+          <h4>Rent Income</h4>
+            <table class="table table-striped">
+                <tbody class='table-body'>
+                    {% for sale in sales %}
+                      {% if sale.status == 'monthly' %}
+                        <tr>
+                            <td>{{sale.date_created}}</td>
+                            <td>{{sale.client}}</td>
+                            <td>{{sale.note}}</td>
+                            <td>{{sale.amount}}</td>
+                        </tr>
+                    {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

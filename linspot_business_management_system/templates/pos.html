@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}POS{% endblock title %}
+{% block content %}
+<div class="pos">
+    <!-- //loading spinner -->
+    <div class="spinner">
+        <div class="d-flex flex-column justify-content-center align-items-center spinner-content">
+            {% include "components/spinnerComponent.html" %}
+        </div>
+    </div>
+    <div>
+        <div class="title d-flex justify-content-end align-items-center" style="opacity: 1 !important;">
+            <h5 class="w-100">Point Of Sale</h5>
+            <div class="d-flex align-items-center justify-content-end w-100">
+                <span class="py-2 shadow px-2">
+                    <button class="btn btn-primary btn-sm client-add" type="button">
+                        <i class='bx bx-user-plus px-2'></i>Non Permanent</i>
+                    </button>
+                </span>
+                <span class="py-2 shadow px-2">
+                    <button class="btn btn-secondary btn-sm permanent" type="button">
+                        <i class='bx bx-user-plus px-2'></i> Permanent</i>
+                    </button>
+                </span>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-9">
+                <div class="cafe">
+                    <h6>Internet Cafe</h6>
+                    <table class='todays-vouchers list-unstyled p-2 table table-dark table-striped mt-4 table-responsive'>
+                        {% for voucher in vouchers %}
+                        <tr>
+                            <td>{{voucher.client}} ({{voucher.work_station.station}})</td>
+                            <td class='px-2'>{{voucher.start_time}}</td>
+                            <td class='px-3'><i class='bx bx-chevron-right bx-m'></i></td>
+                            <td class='px-2'>{{voucher.end_time}}</td>
+                            <td><button class='btn btn-primary bg-primary btn-sm' data-id = {{voucher.id}}>done</button></td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="Day-Desks mt-3">
+                    <h6>Day Desks</h6>
+                    <table class='todays-vouchers list-unstyled p-2 table-primary table table-striped mt-4 table-responsive'>
+                        {% for day in desks %}
+                        <tr>
+                            <td>{{day.client}} ({{day.work_station.station}})</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+            <div class="col-3 border p-3">
+                <form action="" method="post" id="pos_form">
+                    {% csrf_token %}
+                    {{form|crispy}}
+                    <button class="btn btn-secondary w-100 pos-btn" type="button">Charge</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <section class="cafe-modal hidden">{% include "clients/pos/voucher_list.html" %}</section>
+
+    <section class="permanent-modal hidden">{% include "clients/pos/addPermanent.html" %}</section>
+
+    <section class="client-modal hidden">{% include "clients/pos/addClientComponent.html" %}</section>
+
+    <div class="overlay hidden"></div>
+</div>
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<script>
+
+    $(document).ready(function() {
+        $('#id_client').select2(
+            {placeholder: 'Select Client'}
+        );
+        $('#id_product').select2(
+            {placeholder: 'Select Product'}
+        );
+        $('#id_work_station').select2(
+            {placeholder: 'Select Workstation'}
+        );
+    });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        //pos
+        const cafe = document.querySelector('.internet')
+        const day = document.querySelector('.day')
+        const m_rentals = document.querySelector('.m-r')
+        const resource = document.querySelector('.resource')
+        const addVoucher = document.querySelectorAll('.add')
+        const voucher = document.querySelector('.voucher')
+        const posDetails = document.querySelector('.posDetails')
+        const pMenu = document.querySelector('.p-menu')
+        const ordinary = document.querySelector('.ordinary')
+        const laptop = document.querySelector('.laptop')
+        const monthlRent = document.querySelector('.m-r')
+        const client_obj =document.querySelectorAll('.op_value')
+
+
+
+        //modal
+        const modal = document.querySelector(".cafe-modal");
+        const clientModal = document.querySelector('.client-modal')
+        const overlay = document.querySelector(".overlay");
+        const clientAddBtn = document.querySelector('.client-add')
+        const openModalBtn = document.querySelector(".btn-open");
+        const closeModalBtn = document.querySelectorAll(".close")
+        const spinner = document.querySelector('.spinner')
+        const permanent = document.querySelector('.permanent')
+        const permanentModal = document.querySelector('.permanent-modal')
+
+        let voucher_number = ''
+
+        //spin loader
+        function spin(){
+            spinner.classList.add('hidden')
+            console.log(spinner)
+        }
+        setTimeout(spin, 3000)
+
+        //function to effect pos menu
+        function hide(){
+            posDetails.classList.remove('hidden')
+            pMenu.classList.add('hidden')
+        }
+
+        //add client modal
+        clientAddBtn.addEventListener(
+            'click', ()=>{
+                clientModal.classList.remove("hidden");
+                overlay.classList.remove("hidden");
+            }
+        )
+
+        //permanent modal
+        permanent.addEventListener(
+            'click' , ()=>{
+                console.log('click')
+                permanentModal.classList.remove("hidden");
+                overlay.classList.remove("hidden");
+            }
+        )
+
+
+        //monthly rent
+        //monthlRent.addEventListener(
+        //    'click', ()=>{
+        //        document.querySelector('.monthly').classList.remove('hidden')
+        //        hide()
+        //}
+        //)
+
+
+        //close modal
+        closeModalBtn.forEach((btn)=>{
+            btn.addEventListener(
+                'click', ()=>{
+                    modal.classList.add("hidden");
+                    overlay.classList.add("hidden");
+                    clientModal.classList.add('hidden')
+                    resource.value = ''
+                }
+            )
+        })
+
+        //post client data
+        $('#client_form').submit(function(e) {
+            e.preventDefault();
+            const url = "/clients/createClient/"
+            const data = {
+              name : $('#client_name').val(),
+              phonenumber : $('#client_phonenumber').val(),
+              csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val()
+            }
+
+            $.ajax({
+              url: url,
+              type: 'POST',
+              data: data,
+            }).done(function(response) {
+                console.log(response)
+                if(response.success){
+                    clientData()
+                    clientModal.classList.add('hidden')
+                    overlay.classList.add("hidden");
+                    console.log('loaded')
+                }
+              })
+            $(this).trigger('reset')
+        })
+
+        //permanent client
+        $('#permanent_form').submit(function(e) {
+            e.preventDefault();
+            const url = "/clients/createPermanent/"
+            const data = {
+              name : $('#permanent_name').val(),
+              phonenumber : $('#permanent_phonenumber').val(),
+              address: $('#permanent_address').val(),
+              station: $('#permanent_station').val(),
+              id_number: $('#permanent_id_number').val(),
+              csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val()
+            }
+
+            $.ajax({
+              url: url,
+              type: 'POST',
+              data: data,
+            }).done(function(response) {
+                if(response.success){
+                    clientData()
+                    permanentModal.classList.add('hidden')
+                    overlay.classList.add("hidden");
+                    console.log('loaded')
+                }else{
+                    console.log(response['warning'])
+                }
+              })
+            $(this).trigger('reset')
+          })
+
+        document.querySelector('.pos-btn').addEventListener(
+            'click', ()=>{
+            console.log('clicked')
+            const url = "/transactions/create/"
+            const data = {
+              client : $('#id_client').val(),
+              amount : $('#id_amount_0').val(),
+              product : $('#id_product').val(),
+              voucher : voucher,
+              station : $('#id_work_station').val(),
+              csrfmiddlewaretoken: $("[name=csrfmiddlewaretoken]").val()
+            }
+            console.log(data)
+            $.ajax({
+              url: url,
+              type: 'POST',
+              data: data,
+            }).done(function(response) {
+                if(response.success){
+                    console.log(response)
+                }else{
+                    console.log(response['warning'])
+                }
+              })
+            $(this).trigger('reset')
+          })
+        })
+</script>
+{% endblock content %}

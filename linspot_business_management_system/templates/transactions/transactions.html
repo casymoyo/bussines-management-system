@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Transactions{% endblock title %}
+{% block content %}
+<div class="pos">
+    <div>
+        <div class="title d-flex justify-content-end align-items-center" style="opacity: 1 !important;">
+            <h4 class="w-100">
+                <span class="px-1">
+                    <i class='bx bxs-circle'></i>
+                    Sales Transactions
+                </span>
+            </h4>
+            <div class="d-flex align-items-center justify-content-end w-100">
+                <span class="py-2 shadow px-2">
+                    <form method="get" class="d-flex align-items-center">
+                        <input type="search" name="q" class="form-control shadow" placeholder="transaction">
+                    </form>
+                </span>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-10">
+                <div class="mt-3">
+                    <h6>Total USD${{total}}.00</h6>
+                    <table class='todays-vouchers list-unstyled p-2 table-primary table table-striped mt-4 table-responsive'>
+                        <thead>
+                            <th>Date</th>
+                            <th>Details</th>
+                            <th>Amount</th>
+                            <th>Note</th>
+                        </thead>
+                        <tbody>
+                            {% for transaction in transactions %}
+                            <tr>
+                                <td>{{transaction.date_created}}</td>
+                                <td>{{transaction.client}}</td>
+                                <td>{{transaction.amount}}</td>
+                                <td>{{transaction.note}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                  <div class="col-2">
+            <div class="container mt-5">
+                <div class="report-btns">
+                    <div class="mt-2 mb-2">
+                        <a href="{% url 'transactions:dailyReport' %}" class="btn btn-primary text-light w-100">Daily report</a>
+                    </div>
+                    <div class="mt-2">
+                        <a href="{% url 'transactions:monthlyReport' %}" class="btn btn-primary text-light w-100">Monthly report</a>
+                    </div>
+                    <div class="mt-2 mb-2">
+                        <button class="btn btn-primary text-light w-100 custom">Custom report</button>
+                    </div>
+                </div>
+                <div class="custom-form mt-2 hidden">
+                    <div class="back w-100 py-2 px-2">
+                        <i class='bx bxs-left-arrow' style="color: #F99417;"></i>
+                        <small>back</small>
+                        <hr style="border: 1px solid #333 !important;">
+                    </div>
+                    <p class="mt-3">Choose dates</p>
+                    <form method="get" id='custom_form'>
+
+                        <input type="text" name="q" value="custom" hidden>
+                        <div>
+                            <label for="id_from">From</label>
+                            <input type="date" name="from" id="id_from" class="form-control">
+                        </div>
+                        <div>
+                            <label for="id_from">To</label>
+                            <input type="date" name="to" id="id_to" class="form-control">
+                        </div>
+                        <div class="d-flex justify-content-end mt-3">
+                            <button class="btn btn-secondary" type="submit" >submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const expenses = document.querySelector('.expenses');
+        const overlay = document.querySelector(".overlay");
+        const expensesModal = document.querySelector('.expenses-modal');
+        const closeModalBtn = document.querySelectorAll(".close");
+
+        //custom report
+        const reportBtn = document.querySelector('.custom');
+        const backBtn = document.querySelector('.back');
+
+
+        expenses.addEventListener(
+            'click', ()=>{
+                expensesModal.classList.remove("hidden");
+                overlay.classList.remove("hidden");
+            }
+        )
+
+        closeModalBtn.forEach((btn)=>{
+            btn.addEventListener(
+                'click', ()=>{
+                    expensesModal.classList.add("hidden");
+                    overlay.classList.add("hidden");
+                }
+            )
+        })
+
+        reportBtn.addEventListener(
+            'click', ()=>{
+                document.querySelector('.custom-form').classList.remove('hidden');
+                document.querySelector('.report-btns').classList.add('hidden');
+            }
+        )
+
+        backBtn.addEventListener(
+            'click', ()=>{
+                document.querySelector('.custom-form').classList.add('hidden');
+                document.querySelector('.report-btns').classList.remove('hidden');
+            }
+        )
+
+        $('#custom_form').submit(function(e) {
+            e.preventDefault();
+            const data = {
+                date_from: $('#id_from').val(),
+                date_to: $('#id_to').val(),
+            }
+            console.log(data)
+            $.ajax({
+                url: '{% url 'expenses:customReport'%}',
+                type: 'GET',
+                data: data,
+                }).done(function(response) {
+
+            })
+        })
+
+    })
+</script>
+{% endblock content %}

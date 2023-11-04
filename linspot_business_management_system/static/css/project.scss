@@ -1,0 +1,258 @@
+// colors
+$primary-color-1: #027CB7;
+$primary-color-2: #664147;
+$primary-color-3: #F99417;
+$primary-color-4: #F5F5F5;
+$primary-color-5: #fe4066;
+$primary-color-6: #476641;
+
+// fonts
+
+// root
+body{
+    overflow: hidden !important;
+    .btn-primary{
+        background: #664147 !important;
+        border-color: #664147 !important;
+      }
+      .btn-secondary{
+        background: #476641 !important;
+        border-color: #476641 !important;
+      }
+      .btn-warning{
+        background: $primary-color-3 !important;
+        border-color: $primary-color-3 !important;
+      }
+    input{
+        opacity: 0.7 !important;
+    }
+}
+
+  
+// account styles
+.accounts{
+    background: $primary-color-4;
+    .reset{
+        background: $primary-color-3 !important;
+        border-color: $primary-color-3;
+    }
+}
+
+// navbar
+.navbar{
+    .nav-link{
+        color:#333 !important;
+    }
+}
+
+.main-app{
+    .col-2{
+        .aside{
+            height: 90vh;
+            li{
+                padding-top: 10px;
+                a{
+                    color: #333;
+                    text-decoration: none;
+                    i{
+                        font-weight: bold !important;
+                    }
+                }
+            }
+            li:hover{
+                background: $primary-color-4;
+                padding-bottom: 5px;
+            }
+        }
+    }
+    .col-10{
+        .dashboard{
+            h4{
+                opacity: 0.8 !important;
+            }
+            .card{
+                height: 20vh;
+                border:none;
+                a{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+
+// all title
+.title{
+    margin-top: 14px;
+    opacity: 0.8;
+    color: $primary-color-6;
+}
+
+// pos
+.pos{
+    .card{
+        cursor: pointer;
+        // height: 150px;
+    }
+    .card:hover{
+        background: #333;
+        color: #F5F5F5;
+    }
+    .product:hover{
+        color: $primary-color-5;
+    }
+    .col-3{
+        height: 90vh;
+    }
+}
+
+// voucher list
+.vouchers{
+    .voucher-table{
+        overflow-y: auto;
+        height: 10vh !important;  
+    }
+    .voucher-table::-webkit-scrollbar {
+        width: 2px;
+    }
+        
+    .voucher-table::-webkit-scrollbar-track {
+        border-radius: 5px;
+    }
+        
+    .voucher-table::-webkit-scrollbar-thumb {
+        background:$primary-color-5; 
+        border-radius: 5px;
+    }
+        
+    .voucher-table::-webkit-scrollbar-thumb:hover {
+        background:rgb(54, 56, 58); 
+    }
+}
+
+//modal(s)
+.cafe-modal,
+.client-modal,
+.permanent-modal,
+.expenses-modal,
+.category-modal{
+    gap: 0.4rem;
+    width: 1000px;
+    padding: 1.3rem;
+    min-height: 500px;
+    position: absolute;
+    top: 20%;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    z-index: 2;
+
+    p {
+        font-size: 0.9rem;
+        color: #777;
+        margin: 0.4rem 0 0.2rem;
+      }
+      
+    button {
+        cursor: pointer;
+        border: none;
+        font-weight: 600;
+      }
+      
+    .btn {
+        display: inline-block;
+        padding: 0.8rem 1.4rem;
+        font-weight: 700;
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 1em;
+      }
+    
+      
+    .btn-cl {
+        transform: translate(10px, -20px);
+        padding: 0.5rem 0.7rem;
+        background: #eee;
+        color: $primary-color-5 !important;
+      }
+  }
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    z-index: 1;
+  }
+  .hidden {
+    display: none;
+  }
+
+  .spinner-content{
+    height: 100vh;
+    // z-index: 3 !important;
+    background-color: white;
+    border: 1px solid #ddd;
+  }
+
+  .back{
+    width: 100%;
+    font-weight: bold;
+    cursor:pointer;
+  }
+  .back:hover{
+    background: #333;
+    small{
+        color: #fff;
+    }
+  }
+
+  .client{
+    i.hover{
+        font-size: 20px;
+    }
+  }
+
+//   voucher tables
+.vouchers-list,
+.file-table,
+.vouchers-logs{
+    .card{
+        border:none !important;
+    }
+    .voucher-table{
+        overflow-y: auto;
+        height: 60vh !important;  
+    }
+    .voucher-table::-webkit-scrollbar {
+        width: 2px;
+    }
+        
+    .voucher-table::-webkit-scrollbar-track {
+        border-radius: 5px;
+    }
+        
+    .voucher-table::-webkit-scrollbar-thumb {
+        background:#0d6efd; 
+        border-radius: 5px;
+    }
+        
+    .voucher-table::-webkit-scrollbar-thumb:hover {
+        background:rgb(54, 56, 58); 
+    }
+}
+.breadcrumb{
+    a{
+        color: #333 !important;
+    }
+    a:hover{
+        color:#0d6efd !important;
+    }
+    margin-bottom: -43px;
+}
